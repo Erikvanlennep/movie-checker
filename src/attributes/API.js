@@ -5,6 +5,18 @@
 import {BASE_URL, API_KEY} from './constants.js'
 
 /**
+ * get Latest movies
+ * @returns {Promise.<TResult>}
+ */
+export function getPopularMovies() {
+    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`
+
+    return fetch(url)
+        .then(handleRestResponse)
+        .then((response) => response)
+}
+
+/**
  * Get a single movie with its details
  * @param movieId
  * @returns {Promise.<TResult>}

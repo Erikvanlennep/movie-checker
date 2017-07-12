@@ -4,7 +4,7 @@ import MovieList from './../movies/movieList';
 
 import './App.css';
 
-import {getSearchMovies} from './../../attributes/API.js'
+import {getSearchMovies, getPopularMovies} from './../../attributes/API.js'
 import {Grid, Row, Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 class App extends Component {
@@ -19,6 +19,10 @@ class App extends Component {
         };
     }
 
+    componentDidMount() {
+        this.getPopularMovies()
+    }
+
     render() {
 
         return (
@@ -26,14 +30,14 @@ class App extends Component {
                 <Grid>
                     <div className="App-header">
                         <img src={logo} className="App-logo" alt="logo"/>
-                        <h2>Welcome to React</h2>
+                        <h2>Welcome to The Movie Checker</h2>
                     </div>
                     <Col sm={6} smOffset={3}>
                         <Form>
                             <FormGroup>
                                 <FormControl
                                     type="text"
-                                    placeholder="search"
+                                    placeholder="search for movies"
                                     onChange={this.onSearchBoxChange}
                                     onKeyPress={this.handleKeyPress}/>
                             </FormGroup>
@@ -74,7 +78,6 @@ class App extends Component {
             Promise.all([
                 getSearchMovies(this.state.name, 'en-US', 1).then((movies) => {
                     this.setState({movies: movies})
-                    console.log(this.state.movies.results[0].overview);
                 }),
 
             ]).then((data) => {
@@ -83,6 +86,19 @@ class App extends Component {
                 this.handleFetchError(err)
             })
         }, 1000)
+    }
+
+    getPopularMovies = () => {
+        Promise.all([
+            getPopularMovies().then((movies) => {
+                this.setState({movies: movies})
+            }),
+
+        ]).then((data) => {
+            this.setState({loading: false})
+        }).catch((err) => {
+            this.handleFetchError(err)
+        })
     }
 
     /**

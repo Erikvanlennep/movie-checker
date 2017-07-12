@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Grid, Row, Col, Well, Jumbotron, Thumbnail} from 'react-bootstrap';
+import {Grid, Row, Col, Well, Jumbotron, Thumbnail, Button} from 'react-bootstrap';
 
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
@@ -31,15 +31,15 @@ export default class MovieList extends Component {
 
     renderMovies = (movies) => {
         return movies.map((movie, index) => {
-            // const url = `${BASE_IMG_URL}/w300${movie.poster_path}`;
 
             const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${movie.poster_path}`
 
             return (
-                <Col xs={4} md={3}>
+                <Col xs={6} md={4}>
                     <Thumbnail src={url} alt="242x200">
-                        <h3>{movie.title}</h3>
+                        <h3 className="thumbnail-header">{movie.title}</h3>
                         <p className="thumbnail-text">{movie.overview}</p>
+                        <Button bsStyle="info" bsSize="small">Read more</Button>
                     </Thumbnail>
                 </Col>
             )

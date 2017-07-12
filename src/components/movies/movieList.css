@@ -1,3 +1,10 @@
+.thumbnail-header {
+    height: 64px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+
 .thumbnail-text {
     height: 128px;
     overflow: hidden;
