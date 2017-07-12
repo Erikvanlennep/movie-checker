@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import logo from '../../images/logo/logo.svg';
+import MovieList from './../movies/movieList';
+
 import './App.css';
 
+import {getSearchMovies} from './../../attributes/API.js'
 import {Grid, Row, Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 class App extends Component {
@@ -10,12 +13,14 @@ class App extends Component {
         super(props);
         this.state = {
             name: "",
+            movies: {},
             loading: false,
             timeout: 0
         };
     }
 
     render() {
+
         return (
             <div className="App">
                 <Grid>
@@ -30,7 +35,9 @@ class App extends Component {
                             </FormGroup>
                         </Form>
                     </Col>
-                    <h2>{this.state.name}</h2>
+                    <Col md={12}>
+                        <MovieList movies={this.state.movies}/>
+                    </Col>
 
                 </Grid>
             </div>
@@ -42,15 +49,38 @@ class App extends Component {
 
         clearTimeout(this.state.timeout);
 
-        // this.setState(previousState => {
-        //     return {loading: !previousState.loading};
-        // });
+        this.setState({loading: true});
 
         this.state.timeout = setTimeout(() => {
             this.setState({
                 name: value
             })
-        }, 500)
+
+            if (this.state.name === '') {
+                this.setState({loading: false})
+                return;
+            }
+
+            Promise.all([
+                getSearchMovies(this.state.name, 'en-US', 1).then((movies) => {
+                    this.setState({movies: movies})
+                    console.log(this.state.movies.results[0].overview);
+                }),
+
+            ]).then((data) => {
+                this.setState({loading: false})
+            }).catch((err) => {
+                this.handleFetchError(err)
+            })
+        }, 1000)
+    }
+
+    /**
+     * Log the error and show a not found on screen
+     * @param error
+     */
+    handleFetchError = (error) => {
+        console.error(error)
     }
 }
 
