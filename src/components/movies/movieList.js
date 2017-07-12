@@ -3,6 +3,12 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
+import {Grid, Row, Col, Well, Jumbotron, Thumbnail} from 'react-bootstrap';
+
+import {BASE_IMG_URL} from './../../attributes/constants'
+import thumbnail from './../../images/thumbnails/no-image-available.png'
+
+import './movieList.css'
 
 export default class MovieList extends Component {
 
@@ -14,15 +20,30 @@ export default class MovieList extends Component {
     render() {
         console.log(this.props.movies);
         if (this.props.movies.results === undefined) {
-            return (<div>search for movies</div>)
+            return (<div>No movies found</div>)
         }
         return (
-            <div>
-                <h1>{this.props.movies.results[0].title}</h1>
-                <p>{this.props.movies.results[0].overview}</p>
-            </div>
+            <row>
+                {this.renderMovies(this.props.movies.results)}
+            </row>
         )
+    }
 
+    renderMovies = (movies) => {
+        return movies.map((movie, index) => {
+            // const url = `${BASE_IMG_URL}/w300${movie.poster_path}`;
+
+            const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${movie.poster_path}`
+
+            return (
+                <Col xs={4} md={3}>
+                    <Thumbnail src={url} alt="242x200">
+                        <h3>{movie.title}</h3>
+                        <p className="thumbnail-text">{movie.overview}</p>
+                    </Thumbnail>
+                </Col>
+            )
+        })
 
     }
 }

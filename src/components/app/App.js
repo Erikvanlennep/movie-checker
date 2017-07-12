@@ -28,23 +28,33 @@ class App extends Component {
                         <img src={logo} className="App-logo" alt="logo"/>
                         <h2>Welcome to React</h2>
                     </div>
-                    <Col md={5}>
+                    <Col sm={6} smOffset={3}>
                         <Form>
                             <FormGroup>
-                                <FormControl type="text" placeholder="search" onChange={this.onSearchBoxChange}/>
+                                <FormControl
+                                    type="text"
+                                    placeholder="search"
+                                    onChange={this.onSearchBoxChange}
+                                    onKeyPress={this.handleKeyPress}/>
                             </FormGroup>
                         </Form>
                     </Col>
-                    <Col md={12}>
+                    <Col sm={12}>
                         <MovieList movies={this.state.movies}/>
                     </Col>
-
                 </Grid>
             </div>
         );
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+        }
+    }
+
     onSearchBoxChange = (event) => {
+        event.preventDefault();
         let value = event.target.value;
 
         clearTimeout(this.state.timeout);

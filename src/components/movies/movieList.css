@@ -1,0 +1,8 @@
+.thumbnail-text {
+    height: 128px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    -webkit-box-orient: vertical;
+}
