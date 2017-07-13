@@ -78,32 +78,29 @@ export default class MovieDetial extends Component {
         return (
             <div>
                 <Row>
-                    <Col xs={4} md={4}>
-                        <Image src={url} rounded/>
+                    <Col xs={12} sm={5} md={4}>
+                        <Image className="image-center" src={url} rounded/>
                     </Col>
-                    <Col xs={8} md={8}>
+                    <Col xs={8} sm={7} md={8}>
                         <Row>
-                            <Col xs={10} md={10}>
+                            <Col xs={10} sm={11} md={10}>
                                 <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})</h2>
                             </Col>
-                            <Col xs={2} md={2}>
+                            <Col xs={1} sm={2} md={1}>
                                 <Button className="btn-primary"><i className="material-icons ">star</i> {movie.vote_average}</Button>
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={10} md={10}>
+                            <Col xs={10} sm={10} md={10}>
                             <h3>Description</h3>
                             <p>{movie.overview}</p>
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={10} md={10}>
+                            <Col xs={10} sm={10} md={10}>
                                 <h3>Genres</h3>
                                 <p>{this.renderGenres(movie.genres)}</p>
                             </Col>
-                        </Row>
-                        <Row>
-                            <Button bsStyle="success" className="btn-raised">Watch Trailer</Button>
                         </Row>
                     </Col>
                 </Row>
@@ -144,9 +141,9 @@ export default class MovieDetial extends Component {
             const url = !cast.profile_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${cast.profile_path}`
 
             fullCast.push (
-                <Col xs={2} md={2} key={index}>
+                <Col xs={4} sm={5} md={3} lg={2} key={index}>
                     <Panel className="movie-detail-panel">
-                        <Image className="pointer" rounded src={url}/>
+                        <Image className="thumbnail-image pointer" rounded src={url}/>
                         <h5>{cast.character}</h5>
                         <p><i>{cast.name}</i></p>
                     </Panel>
