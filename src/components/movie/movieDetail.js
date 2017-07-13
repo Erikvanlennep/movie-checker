@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {Grid, Row, Col, Image, Well, Panel, Button} from 'react-bootstrap';
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
 import Moment from 'moment';
-import { browserHistory } from 'react-router'
+import {browserHistory} from 'react-router'
 
 import './movieDetail.css'
 
@@ -78,22 +78,32 @@ export default class MovieDetial extends Component {
         return (
             <div>
                 <Row>
+                    <Col xs={12} sm={12} md={12}>
+                        <ul className="breadcrumb">
+                            <li className="pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
+                            <li className="active">{movie.original_title}</li>
+                        </ul>
+                    </Col>
+                </Row>
+                <Row>
                     <Col xs={12} sm={5} md={4}>
                         <Image className="image-center" src={url} rounded/>
                     </Col>
                     <Col xs={8} sm={7} md={8}>
                         <Row>
                             <Col xs={10} sm={11} md={10}>
-                                <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})</h2>
+                                <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})
+                                </h2>
                             </Col>
                             <Col xs={1} sm={2} md={1}>
-                                <Button className="btn-primary"><i className="material-icons ">star</i> {movie.vote_average}</Button>
+                                <Button className="btn-primary"><i
+                                    className="material-icons ">star</i> {movie.vote_average}</Button>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={10} sm={10} md={10}>
-                            <h3>Description</h3>
-                            <p>{movie.overview}</p>
+                                <h3>Description</h3>
+                                <p>{movie.overview}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -115,7 +125,7 @@ export default class MovieDetial extends Component {
 
         return genres.map((genre, index) => {
 
-            return(
+            return (
                 <a className="pointer" onClick={() => this.onGenreClick(genre.id)}> {genre.name} </a>
             )
         })
@@ -134,13 +144,13 @@ export default class MovieDetial extends Component {
         let fullCast = [];
 
         credits.cast.map((cast, index) => {
-            if(index >= 5){
+            if (index >= 6) {
                 return;
             }
 
             const url = !cast.profile_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${cast.profile_path}`
 
-            fullCast.push (
+            fullCast.push(
                 <Col xs={4} sm={5} md={3} lg={2} key={index}>
                     <Panel className="movie-detail-panel">
                         <Image className="thumbnail-image pointer" rounded src={url}/>
@@ -151,12 +161,22 @@ export default class MovieDetial extends Component {
             )
         })
 
-        return(
-            <Row>
-                <h2>Cast</h2>
-                {fullCast}
-            </Row>
+        return (
+            <div>
+                <Row>
+                    <h2>Cast</h2>
+                    {fullCast}
+
+                </Row>
+                <Row>
+                    <Button>Show Full cast</Button>
+                </Row>
+            </div>
         )
+    }
+
+    onHomeClick = () => {
+        browserHistory.push('/')
     }
 
     /**
