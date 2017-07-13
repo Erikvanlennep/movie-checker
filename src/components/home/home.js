@@ -42,7 +42,9 @@ export default class Home extends Component {
                 </Col>
 
                 <Col sm={12}>
-                    <MovieList movies={this.state.movies}/>
+                    <MovieList
+                        movies={this.state.movies}
+                    loading={this.state.loading}/>
                 </Col>
             </div>
         )
@@ -69,8 +71,11 @@ export default class Home extends Component {
 
             if (this.state.name === '') {
                 this.setState({loading: false})
+                this.getPopularMovies();
                 return;
             }
+
+
 
             Promise.all([
                 getSearchMovies(this.state.name, 'en-US', 1).then((movies) => {

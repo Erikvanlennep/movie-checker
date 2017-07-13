@@ -87,7 +87,7 @@ export default class MovieDetial extends Component {
                                 <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})</h2>
                             </Col>
                             <Col xs={2} md={2}>
-                                <Button><i className="material-icons">star</i> {movie.vote_average}</Button>
+                                <Button className="btn-primary"><i className="material-icons ">star</i> {movie.vote_average}</Button>
                             </Col>
                         </Row>
                         <Row>

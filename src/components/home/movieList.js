@@ -24,6 +24,9 @@ export default class MovieList extends Component {
         if (this.props.movies.results === undefined) {
             return (<img src={logo} className="App-logo" alt="logo"/>)
         }
+        if (this.props.loading) {
+            return (<img src={logo} className="App-logo" alt="logo"/>)
+        }
         return (
             <row>
                 {this.renderMovies(this.props.movies.results)}
@@ -56,4 +59,5 @@ export default class MovieList extends Component {
 
 MovieList.propTypes = {
     movies: React.PropTypes.object.isRequired,
+    loading: React.PropTypes.bool,
 }
