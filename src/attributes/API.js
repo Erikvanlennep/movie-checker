@@ -21,26 +21,31 @@ export function getPopularMovies() {
  * @param movieId
  * @returns {Promise.<TResult>}
  */
-export function getMovieDetails(movieId) {
+export function getMovieDetails(movieId, language) {
+    if(language === null){ language = 'en-US' }
 
-    const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`;
+    const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=${language}`;
 
     return fetch(url)
         .then(handleRestResponse)
         .then((response) => response)
-
 }
 
 export function getSearchMovies(searchString, language, page){
-    if(page === null) {
-        page = 1;
-    }
+    if(page === null){ page = 1 }
 
-    if(language === null){
-        language = 'en-US'
-    }
+    if(language === null){ language = 'en-US' }
 
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${language}&query=${searchString}&page=${page}`;
+
+    return fetch(url)
+        .then(handleRestResponse)
+        .then((response) => response)
+}
+
+export function getMovieCredits(movieId) {
+
+    const url = `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`;
 
     return fetch(url)
         .then(handleRestResponse)
