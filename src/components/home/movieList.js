@@ -3,13 +3,15 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Col, Thumbnail, Button} from 'react-bootstrap';
+import {Col, Thumbnail, Button, Well, Image} from 'react-bootstrap';
 import { browserHistory } from 'react-router'
+
 
 import {BASE_IMG_URL} from '../../attributes/constants'
 import thumbnail from '../../images/thumbnails/no-image-available.png'
 
 import './movieList.css'
+import logo from '../../images/logo/logo.svg';
 
 export default class MovieList extends Component {
 
@@ -20,7 +22,7 @@ export default class MovieList extends Component {
 
     render() {
         if (this.props.movies.results === undefined) {
-            return (<div>No movies found</div>)
+            return (<img src={logo} className="App-logo" alt="logo"/>)
         }
         return (
             <row>
@@ -36,11 +38,12 @@ export default class MovieList extends Component {
 
             return (
                 <Col xs={6} md={4} key={index}>
-                    <Thumbnail src={url} alt="242x200">
+                    <Well>
+                        <Image className="thumbnail-image" rounded src={url} onClick={() => this.onMovieDetailButtonClick(movie.id)}/>
                         <h3 className="thumbnail-header">{movie.title}</h3>
                         <p className="thumbnail-text">{movie.overview}</p>
                         <Button bsStyle="info" bsSize="small" onClick={() => this.onMovieDetailButtonClick(movie.id)}>Read more</Button>
-                    </Thumbnail>
+                    </Well>
                 </Col>
             )
         })

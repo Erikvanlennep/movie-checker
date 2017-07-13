@@ -17,6 +17,8 @@ class App extends Component {
                         <h2>Welcome to The Movie Checker</h2>
                     </div>
 
+
+
                     {this.props.children}
 
                 </Grid>

@@ -3,8 +3,10 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Grid, Row, Col, Image, Jumbotron, Thumbnail, Button} from 'react-bootstrap';
+import {Grid, Row, Col, Image, Glyphicon, Thumbnail, Button} from 'react-bootstrap';
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
+import Moment from 'moment';
+import { browserHistory } from 'react-router'
 
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
@@ -68,25 +70,60 @@ export default class MovieDetial extends Component {
 
         const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${movie.poster_path}`
 
+
         return (
             <Grid>
-                <Row>
-                        <h2><strong>{movie.original_title}</strong> ({movie.release_date})</h2>
-                </Row>
                 <Row>
                     <Col xs={4} md={4}>
                         <Image src={url} rounded/>
                     </Col>
                     <Col xs={8} md={8}>
-                        <div>
-
-
-                        </div>
+                        <Row>
+                            <Col xs={10} md={10}>
+                                <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})</h2>
+                            </Col>
+                            <Col xs={2} md={2}>
+                                <Button><i className="material-icons">star</i> {movie.vote_average}</Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={10} md={10}>
+                            <h3>Description</h3>
+                            <p>{movie.overview}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={10} md={10}>
+                                <h3>Genres</h3>
+                                <p>{this.renderGenres(movie.genres)}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Button bsStyle="success" className="btn-raised">Watch Trailer</Button>
+                        </Row>
                     </Col>
+                </Row>
+                <Row>
+
                 </Row>
             </Grid>
         )
     }
+
+    renderGenres = (genres) => {
+
+        return genres.map((genre, index) => {
+
+            return(
+                <a onClick={() => this.onGenreClick(genre.id)}> {genre.name} </a>
+            )
+        })
+    }
+
+    onGenreClick = (genreId) => {
+        browserHistory.push('/genre/' + genreId + '/movies')
+    }
+
 
     /**
      *

@@ -40,6 +40,7 @@ export default class Home extends Component {
                         </FormGroup>
                     </Form>
                 </Col>
+
                 <Col sm={12}>
                     <MovieList movies={this.state.movies}/>
                 </Col>
