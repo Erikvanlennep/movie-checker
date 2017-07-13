@@ -3,11 +3,14 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Grid, Row, Col, Image, Glyphicon, Thumbnail, Button} from 'react-bootstrap';
+import {Grid, Row, Col, Image, Well, Panel, Button} from 'react-bootstrap';
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
 import Moment from 'moment';
 import { browserHistory } from 'react-router'
 
+import './movieDetail.css'
+
+import logo from '../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
 
@@ -28,9 +31,13 @@ export default class MovieDetial extends Component {
     }
 
     render() {
+        if (this.state.loading) {
+            return (<img src={logo} className="App-logo" alt="logo"/>)
+        }
         return (
             <div>
                 {this.createMovieDetailComponent(this.state.movie)}
+
                 {this.createCreditsComponent(this.state.credits)}
             </div>
         )
@@ -64,15 +71,12 @@ export default class MovieDetial extends Component {
      * @returns {XML}
      */
     createMovieDetailComponent = (movie) => {
-        if (this.state.loading) {
-            return;
-        }
 
         const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${movie.poster_path}`
 
 
         return (
-            <Grid>
+            <div>
                 <Row>
                     <Col xs={4} md={4}>
                         <Image src={url} rounded/>
@@ -106,7 +110,7 @@ export default class MovieDetial extends Component {
                 <Row>
 
                 </Row>
-            </Grid>
+            </div>
         )
     }
 
@@ -115,7 +119,7 @@ export default class MovieDetial extends Component {
         return genres.map((genre, index) => {
 
             return(
-                <a onClick={() => this.onGenreClick(genre.id)}> {genre.name} </a>
+                <a className="pointer" onClick={() => this.onGenreClick(genre.id)}> {genre.name} </a>
             )
         })
     }
@@ -130,7 +134,32 @@ export default class MovieDetial extends Component {
      * @param credits
      */
     createCreditsComponent = (credits) => {
+        let fullCast = [];
 
+        credits.cast.map((cast, index) => {
+            if(index >= 5){
+                return;
+            }
+
+            const url = !cast.profile_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${cast.profile_path}`
+
+            fullCast.push (
+                <Col xs={2} md={2} key={index}>
+                    <Panel className="movie-detail-panel">
+                        <Image className="pointer" rounded src={url}/>
+                        <h5>{cast.character}</h5>
+                        <p><i>{cast.name}</i></p>
+                    </Panel>
+                </Col>
+            )
+        })
+
+        return(
+            <Row>
+                <h2>Cast</h2>
+                {fullCast}
+            </Row>
+        )
     }
 
     /**

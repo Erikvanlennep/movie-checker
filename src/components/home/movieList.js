@@ -39,7 +39,7 @@ export default class MovieList extends Component {
             return (
                 <Col xs={6} md={4} key={index}>
                     <Well>
-                        <Image className="thumbnail-image" rounded src={url} onClick={() => this.onMovieDetailButtonClick(movie.id)}/>
+                        <Image className="thumbnail-image pointer" rounded src={url} onClick={() => this.onMovieDetailButtonClick(movie.id)}/>
                         <h3 className="thumbnail-header">{movie.title}</h3>
                         <p className="thumbnail-text">{movie.overview}</p>
                         <Button bsStyle="info" bsSize="small" onClick={() => this.onMovieDetailButtonClick(movie.id)}>Read more</Button>
