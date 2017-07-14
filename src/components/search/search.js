@@ -1,13 +1,13 @@
 /**
- * Created by erik on 13-7-17.
+ * Created by erik on 14-7-17.
  */
 
 import React, {Component} from 'react';
 import {Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
-import MovieList from './movieList';
+import MovieList from './../home/movieList';
 
-import {getSearchMovies, getPopularMovies} from './../../attributes/API.js';
+import {getSearchMovies} from './../../attributes/API.js';
 
 
 export default class Home extends Component {
@@ -42,7 +42,7 @@ export default class Home extends Component {
         this.setState({loading: true});
 
         Promise.all([
-            getPopularMovies().then((movies) => {
+            getSearchMovies(this.props.params.query, 'en-US', 1).then((movies) => {
                 this.setState({movies: movies})
             }),
 

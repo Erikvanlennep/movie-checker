@@ -8,6 +8,7 @@ import App from './components/app/App';
 import Home from './components/home/home'
 import movieDetail from './components/movie/movieDetail'
 import genre from './components/movies/genre'
+import search from './components/search/search'
 
 //CSS
 import './index.css';
@@ -23,6 +24,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
         <Route component={App}>
             <Route path="/" component={Home}/>
+            <Route path="/search/:query" component={search}/>
             <Route path="/movie/:movieid" component={movieDetail} />
             <Route path="/genre/:genreid/:genrename" component={genre} />
 
