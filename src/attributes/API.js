@@ -52,6 +52,16 @@ export function getMovieCredits(movieId) {
         .then((response) => response)
 }
 
+export function getMoviesByGenre(genreId, language) {
+    if(language === null){ language = 'en-US' }
+
+    const url = `${BASE_URL}/genre/${genreId}/movies?api_key=${API_KEY}&language=${language}`;
+
+    return fetch(url)
+        .then(handleRestResponse)
+        .then((response) => response)
+}
+
 /**
  * create a json or return a error with statuscode
  * @param response

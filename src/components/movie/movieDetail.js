@@ -126,13 +126,13 @@ export default class MovieDetial extends Component {
         return genres.map((genre, index) => {
 
             return (
-                <a className="pointer" onClick={() => this.onGenreClick(genre.id)}> {genre.name} </a>
+                <a className="pointer" onClick={() => this.onGenreClick(genre)}> {genre.name} </a>
             )
         })
     }
 
-    onGenreClick = (genreId) => {
-        browserHistory.push('/genre/' + genreId + '/movies')
+    onGenreClick = (genre) => {
+        browserHistory.push('/genre/' + genre.id + '/' + genre.name)
     }
 
 

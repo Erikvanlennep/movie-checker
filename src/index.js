@@ -24,7 +24,7 @@ ReactDOM.render(
         <Route component={App}>
             <Route path="/" component={Home}/>
             <Route path="/movie/:movieid" component={movieDetail} />
-            <Route path="/genre/:genreid/movies" component={genre} />
+            <Route path="/genre/:genreid/:genrename" component={genre} />
 
         </Route>
     </Router>,
