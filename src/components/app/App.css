@@ -32,12 +32,3 @@
         transform: rotate(360deg);
     }
 }
-
-.pointer {
-    cursor: pointer;
-}
-
-.image-center {
-    display: block;
-    margin: 0 auto;
-}

@@ -10,7 +10,7 @@ import {browserHistory} from 'react-router'
 import {BASE_IMG_URL} from '../../attributes/constants'
 import thumbnail from '../../images/thumbnails/no-image-available.png'
 
-import './movieList.css'
+import '../home/movieList.css'
 import logo from '../../images/logo/logo.svg';
 
 export default class MovieList extends Component {
@@ -22,10 +22,10 @@ export default class MovieList extends Component {
 
     render() {
         if (this.props.movies.results === undefined) {
-            return (<img src={logo} className="App-logo" alt="logo"/>)
+            return (<img src={logo} className="loader image-center" alt="logo"/>)
         }
         if (this.props.loading) {
-            return (<img src={logo} className="App-logo" alt="logo"/>)
+            return (<img src={logo} className="loader image-center" alt="logo"/>)
         }
         return (
             <row>
@@ -44,7 +44,7 @@ export default class MovieList extends Component {
             allMovies.push(
                 <Col xs={6} md={4} key={index}>
                     <Well>
-                        <Image className="thumbnail-image pointer" rounded src={url}
+                        <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url}
                                onClick={() => this.onMovieDetailButtonClick(movie.id)}/>
                         <h3 className="thumbnail-header">{movie.title}</h3>
                         <p className="thumbnail-text">{movie.overview}</p>
@@ -55,29 +55,7 @@ export default class MovieList extends Component {
             )
         })
 
-        console.log(this.props.genre)
-        if (this.props.genre === undefined) {
-            return (
-                <div>
-                    {allMovies}
-                </div>
-            )
-
-        }
-            return (
-                <div>
-                    <Row>
-                        <Col xs={12} sm={12} md={12}>
-                            <ul className="breadcrumb">
-                                <li className="pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
-                                <li className="active">Genre</li>
-                                <li className="active">{this.props.genre}</li>
-                            </ul>
-                        </Col>
-                    </Row>
-                    {allMovies}
-                </div>
-            )
+        return ( <div>{allMovies} </div> )
     }
 
     onMovieDetailButtonClick = (movieId) => {
@@ -91,6 +69,5 @@ export default class MovieList extends Component {
 
 MovieList.propTypes = {
     movies: PropTypes.object.isRequired,
-    loading: PropTypes.bool,
-    genre: PropTypes.string
+    loading: PropTypes.bool
 }

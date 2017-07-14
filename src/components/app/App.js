@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import {Grid, Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 import './App.css';
+import './global.css'
 
 class App extends Component {
 
@@ -24,7 +25,7 @@ class App extends Component {
 
                     <div className="App-header">
                         <Col sm={1}>
-                        <img src={logo} className="App-logo pointer" alt="logo" onClick={() => this.onHomeClick()}/>
+                        <img src={logo} className="App-logo cursor-pointer" alt="logo" onClick={() => this.onHomeClick()}/>
                         </Col>
 
                         <Col sm={6} smOffset={2}>

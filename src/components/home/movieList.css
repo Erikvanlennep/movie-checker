@@ -13,8 +13,3 @@
     line-height: 16px;     /* fallback */
     -webkit-box-orient: vertical;
 }
-
-.thumbnail-image{
-    display: block;
-    margin: 0 auto;
-}

@@ -32,7 +32,7 @@ export default class MovieDetial extends Component {
 
     render() {
         if (this.state.loading) {
-            return (<img src={logo} className="App-logo" alt="logo"/>)
+            return (<img src={logo} className="loader image-center" alt="logo"/>)
         }
         return (
             <div>
@@ -80,14 +80,14 @@ export default class MovieDetial extends Component {
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <ul className="breadcrumb">
-                            <li className="pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
+                            <li className="cursor-pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
                             <li className="active">{movie.original_title}</li>
                         </ul>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} sm={5} md={4}>
-                        <Image className="image-center" src={url} rounded/>
+                        <Image className="image-center no-image-holder w300_and_h450" src={url} rounded/>
                     </Col>
                     <Col xs={8} sm={7} md={8}>
                         <Row>
@@ -96,8 +96,9 @@ export default class MovieDetial extends Component {
                                 </h2>
                             </Col>
                             <Col xs={1} sm={2} md={1}>
-                                <Button className="btn-primary"><i
-                                    className="material-icons ">star</i> {movie.vote_average}</Button>
+                                <Button className="btn-primary cursor-normal">
+                                    <i className="material-icons ">star</i> {movie.vote_average}
+                                </Button>
                             </Col>
                         </Row>
                         <Row>
@@ -126,7 +127,7 @@ export default class MovieDetial extends Component {
         return genres.map((genre, index) => {
 
             return (
-                <a className="pointer" onClick={() => this.onGenreClick(genre)}> {genre.name} </a>
+                <a className="cursor-pointer" onClick={() => this.onGenreClick(genre)}> {genre.name} </a>
             )
         })
     }
@@ -153,7 +154,7 @@ export default class MovieDetial extends Component {
             fullCast.push(
                 <Col xs={4} sm={5} md={3} lg={2} key={index}>
                     <Panel className="movie-detail-panel">
-                        <Image className="thumbnail-image pointer" rounded src={url}/>
+                        <Image className="image-center cursor-pointer" rounded src={url}/>
                         <h5>{cast.character}</h5>
                         <p><i>{cast.name}</i></p>
                     </Panel>

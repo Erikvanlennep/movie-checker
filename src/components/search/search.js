@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
-import MovieList from './../home/movieList';
+import MovieList from '../list/movieList';
 
 import {getSearchMovies} from './../../attributes/API.js';
 

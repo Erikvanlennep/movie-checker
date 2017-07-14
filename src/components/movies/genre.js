@@ -3,9 +3,10 @@
  */
 
 import React, {Component} from 'react';
-import {Col, Form, FormGroup, FormControl} from 'react-bootstrap';
+import {Col, Row, FormGroup, FormControl} from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
-import MovieList from './../home/movieList';
+import MovieList from '../list/movieList';
 
 import {getMoviesByGenre} from './../../attributes/API.js';
 
@@ -28,12 +29,23 @@ export default class Genre extends Component {
     render() {
         return (
             <div>
-                <Col sm={12}>
-                    <MovieList
-                        movies={this.state.movies}
-                        loading={this.state.loading}
-                    genre={this.props.params.genrename}/>
-                </Col>
+                <Row>
+                    <Col xs={12} sm={12} md={12}>
+                        <ul className="breadcrumb">
+                            <li className="cursor-pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
+                            <li className="active">Genre</li>
+                            <li className="active">{this.props.params.genrename}</li>
+                        </ul>
+                    </Col>
+                    <h1 className="text-center"> {this.props.params.genrename} </h1>
+                </Row>
+                <Row>
+                    <Col sm={12}>
+                        <MovieList
+                            movies={this.state.movies}
+                            loading={this.state.loading}/>
+                    </Col>
+                </Row>
             </div>
         )
     }
@@ -49,6 +61,10 @@ export default class Genre extends Component {
         }).catch((err) => {
             this.handleFetchError(err)
         })
+    }
+
+    onHomeClick = () => {
+        browserHistory.push('/')
     }
 
     /**
