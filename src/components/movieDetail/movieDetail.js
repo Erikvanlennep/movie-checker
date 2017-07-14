@@ -71,9 +71,9 @@ export default class MovieDetial extends Component {
      * @returns {XML}
      */
     createMovieDetailComponent = (movie) => {
+        console.log(movie);
 
         const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${movie.poster_path}`
-
 
         return (
             <div>
@@ -155,7 +155,7 @@ export default class MovieDetial extends Component {
             fullCast.push(
                 <Col xs={4} sm={5} md={3} lg={2} key={index}>
                     <Panel className="movie-detail-panel">
-                        <Image className="image-center cursor-pointer" rounded src={url}/>
+                        <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url} onClick={() => this.onCastPersonClick(cast)}/>
                         <h5>{cast.character}</h5>
                         <p><i>{cast.name}</i></p>
                     </Panel>
@@ -168,10 +168,6 @@ export default class MovieDetial extends Component {
                 <Row>
                     <h2>Cast</h2>
                     {fullCast}
-
-                </Row>
-                <Row>
-                    <Button>Show Full cast</Button>
                 </Row>
             </div>
         )
@@ -181,6 +177,10 @@ export default class MovieDetial extends Component {
         browserHistory.push('/')
     }
 
+    onCastPersonClick = (person) => {
+        browserHistory.push('/person/' + person.id + '/' + person.name);
+    }
+
     /**
      * Log the error and show a not found on screen
      * @param error
@@ -188,8 +188,4 @@ export default class MovieDetial extends Component {
     handleFetchError = (error) => {
         console.error(error)
     }
-}
-
-MovieDetial.propTypes = {
-    movie: React.PropTypes.object.isRequired,
 }

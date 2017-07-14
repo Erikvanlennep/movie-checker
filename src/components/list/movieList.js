@@ -45,10 +45,10 @@ export default class MovieList extends Component {
                 <Col xs={6} md={4} key={index}>
                     <Well>
                         <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url}
-                               onClick={() => this.onMovieDetailButtonClick(movie.id)}/>
+                               onClick={() => this.onMovieDetailButtonClick(movie)}/>
                         <h3 className="thumbnail-header">{movie.title}</h3>
                         <p className="thumbnail-text">{movie.overview}</p>
-                        <Button bsStyle="info" bsSize="small" onClick={() => this.onMovieDetailButtonClick(movie.id)}>Read
+                        <Button bsStyle="info" bsSize="small" onClick={() => this.onMovieDetailButtonClick(movie)}>Read
                             more</Button>
                     </Well>
                 </Col>
@@ -58,8 +58,8 @@ export default class MovieList extends Component {
         return ( <div>{allMovies} </div> )
     }
 
-    onMovieDetailButtonClick = (movieId) => {
-        browserHistory.push('/movie/' + movieId);
+    onMovieDetailButtonClick = (movie) => {
+        browserHistory.push('/movie/' + movie.id + '/' + movie.title);
     }
 
     onHomeClick = () => {
