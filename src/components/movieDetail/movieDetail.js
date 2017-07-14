@@ -81,6 +81,7 @@ export default class MovieDetial extends Component {
                     <Col xs={12} sm={12} md={12}>
                         <ul className="breadcrumb">
                             <li className="cursor-pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
+                            <li className="active">Movie</li>
                             <li className="active">{movie.original_title}</li>
                         </ul>
                     </Col>

@@ -3,7 +3,8 @@
  */
 
 import React, {Component} from 'react';
-import {Col, Form, FormGroup, FormControl} from 'react-bootstrap';
+import {Col, Row, FormGroup, FormControl} from 'react-bootstrap';
+import {browserHistory} from 'react-router'
 
 import MovieList from '../list/movieList';
 
@@ -15,7 +16,7 @@ export default class Home extends Component {
     constructor() {
         super();
         this.state = {
-            name: "",
+            name: null,
             movies: {},
             loading: false,
             timeout: 0
@@ -23,12 +24,33 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        this.getMovies()
+
+        // if(this.state.name !== this.props.params.query){
+        //     this.forceUpdate();
+        // }
+        this.getMovies(this.props.params.query)
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.params.query !== undefined){
+            this.getMovies(nextProps.params.query)
+        }
     }
 
     render() {
         return (
             <div>
+                {console.log("test")}
+                <Row>
+                    <Col xs={12} sm={12} md={12}>
+                        <ul className="breadcrumb">
+                            <li className="cursor-pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
+                            <li className="active">Search</li>
+                            <li className="active">{this.state.name}</li>
+                        </ul>
+                    </Col>
+                </Row>
+                <h1>search: {this.state.name} </h1>
                 <Col sm={12}>
                     <MovieList
                         movies={this.state.movies}
@@ -38,11 +60,14 @@ export default class Home extends Component {
         )
     }
 
-    getMovies = () => {
+    getMovies = (query) => {
+        // let query = this.props.params.query;
         this.setState({loading: true});
 
+        this.setState({name: query})
+
         Promise.all([
-            getSearchMovies(this.props.params.query, 'en-US', 1).then((movies) => {
+            getSearchMovies(query, 'en-US', 1).then((movies) => {
                 this.setState({movies: movies})
             }),
 
@@ -51,6 +76,10 @@ export default class Home extends Component {
         }).catch((err) => {
             this.handleFetchError(err)
         })
+    }
+
+    onHomeClick = () => {
+        browserHistory.push('/')
     }
 
     /**
