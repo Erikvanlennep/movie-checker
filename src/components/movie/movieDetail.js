@@ -1,11 +1,12 @@
 /**
  * Created by erik on 13-7-17.
  */
+
 import React, {Component} from 'react'
 import {Row, Col, Image, Panel, Button} from 'react-bootstrap';
+import {browserHistory} from 'react-router'
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
 import Moment from 'moment';
-import {browserHistory} from 'react-router'
 
 import './movieDetail.css'
 
@@ -75,7 +76,6 @@ export default class MovieDetial extends Component {
      * @returns {XML}
      */
     createMovieDetailComponent = (movie) => {
-        console.log(movie);
 
         const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${movie.poster_path}`
 
@@ -86,7 +86,7 @@ export default class MovieDetial extends Component {
                         <ul className="breadcrumb">
                             <li className="cursor-pointer"><a onClick={() => this.onHomeClick()}>Home</a></li>
                             <li className="active">Movie</li>
-                            <li className="active">{movie.original_title}</li>
+                            <li className="active">{movie.title}</li>
                         </ul>
                     </Col>
                 </Row>
@@ -97,7 +97,7 @@ export default class MovieDetial extends Component {
                     <Col xs={8} sm={7} md={8}>
                         <Row>
                             <Col xs={10} sm={11} md={10}>
-                                <h2><strong>{movie.original_title}</strong> ({Moment(movie.release_date).format("YYYY")})
+                                <h2><strong>{movie.title}</strong> ({Moment(movie.release_date).format("YYYY")})
                                 </h2>
                             </Col>
                             <Col xs={1} sm={2} md={1}>
@@ -136,7 +136,7 @@ export default class MovieDetial extends Component {
         return genres.map((genre, index) => {
 
             return (
-                <a className="cursor-pointer" onClick={() => this.onGenreClick(genre)}> {genre.name} </a>
+                <a key={index} className="cursor-pointer" onClick={() => this.onGenreClick(genre)}> {genre.name} </a>
             )
         })
     }
@@ -146,7 +146,7 @@ export default class MovieDetial extends Component {
      * @param genre
      */
     onGenreClick = (genre) => {
-        browserHistory.push('/genre/' + genre.id + '/' + genre.name)
+        browserHistory.push('/genre/' + genre.id + '/' + genre.name.replace(/ /g, "_"))
     }
 
 
@@ -197,7 +197,7 @@ export default class MovieDetial extends Component {
      * @param person
      */
     onPersonClick = (person) => {
-        browserHistory.push('/person/' + person.id + '/' + person.name);
+        browserHistory.push('/person/' + person.id + '/' + person.name.replace(/ /g, "_"));
     }
 
     /**

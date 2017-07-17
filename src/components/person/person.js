@@ -1,12 +1,12 @@
 /**
  * Created by erik on 14-7-17.
  */
-import React, {Component} from 'react'
 
+import React, {Component} from 'react'
 import { Row, Col, Image, Panel} from 'react-bootstrap';
+import {browserHistory} from 'react-router'
 import {getPersonDetails, getPersonMovies} from './../../attributes/API.js';
 import Moment from 'moment';
-import {browserHistory} from 'react-router'
 
 import logo from '../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
@@ -77,13 +77,7 @@ export default class Person extends Component {
 
         const url = !person.profile_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${person.profile_path}`
 
-        let gender = person.gender = 1 ? "female" : "male";
-
-        // if(person.gender === 1){
-        //     gender = "female"
-        // }else{
-        //     gender = "male"
-        // }
+        // let gender = person.gender = 1 ? "female" : "male";
 
         return (
             <div>
@@ -160,7 +154,7 @@ export default class Person extends Component {
      * @param movie
      */
     onMovieClick = (movie) => {
-        browserHistory.push('/movie/' + movie.id + '/' + movie.title);
+        browserHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
     }
 
     /**

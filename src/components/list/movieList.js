@@ -1,6 +1,7 @@
 /**
  * Created by erik on 12-7-17.
  */
+
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Col, Button, Well, Image} from 'react-bootstrap';
@@ -18,11 +19,6 @@ import logo from '../../images/logo/logo.svg';
  * return a component of movies
  */
 export default class MovieList extends Component {
-
-    constructor() {
-        super();
-
-    }
 
     render() {
         if (this.props.movies.results === undefined) {
@@ -72,7 +68,7 @@ export default class MovieList extends Component {
      * @param movie
      */
     onMovieDetailButtonClick = (movie) => {
-        browserHistory.push('/movie/' + movie.id + '/' + movie.title);
+        browserHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
     }
 }
 

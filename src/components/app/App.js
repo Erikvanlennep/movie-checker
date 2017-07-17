@@ -1,10 +1,15 @@
+/**
+ * Created by erik on 13-7-17.
+ */
+
 import React, {Component} from 'react';
-import logo from '../../images/logo/logo.svg';
 import { browserHistory } from 'react-router';
 import {Grid, Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 import './App.css';
-import './global.css'
+import './global.css';
+
+import logo from '../../images/logo/logo.svg';
 
 class App extends Component {
 
@@ -31,7 +36,6 @@ class App extends Component {
                                     <FormControl
                                         type="text"
                                         placeholder="search for movies"
-                                        onChange={this.onSearchBoxChange}
                                         onKeyPress={this.handleKeyPress}/>
                                 </FormGroup>
                             </Form>
@@ -45,6 +49,10 @@ class App extends Component {
         );
     }
 
+    /**
+     * Do on key press
+     * @param event
+     */
     handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();

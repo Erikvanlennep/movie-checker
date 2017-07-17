@@ -19,8 +19,6 @@ import 'bootstrap-material-design/dist/css/bootstrap-material-design.css'
 import 'bootstrap-material-design/dist/css/ripples.min.css'
 
 
-
-
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route component={App}>

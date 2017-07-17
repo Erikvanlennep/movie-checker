@@ -8,7 +8,7 @@ import {browserHistory} from 'react-router'
 
 import MovieList from '../list/movieList';
 
-import {getSearchMovies} from './../../attributes/API.js';
+import {getSearchMovies} from './../../attributes/API';
 
 /**
  * Component: Search
@@ -40,7 +40,6 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                {console.log("test")}
                 <Row>
                     <Col xs={12} sm={12} md={12}>
                         <ul className="breadcrumb">
@@ -66,7 +65,6 @@ export default class Home extends Component {
      * return movies
      */
     getSearchMovies = (query) => {
-        // let query = this.props.params.query;
         this.setState({loading: true});
 
         this.setState({name: query})
