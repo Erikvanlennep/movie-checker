@@ -9,7 +9,7 @@ import Home from './components/home/home'
 import movieDetail from './components/movie/movieDetail'
 import genre from './components/movie/genre'
 import search from './components/search/search'
-import person from './components/person/person'
+import person from './components/person/personDetail'
 
 //CSS
 import './index.css';
