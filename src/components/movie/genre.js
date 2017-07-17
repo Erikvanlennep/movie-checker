@@ -3,14 +3,18 @@
  */
 
 import React, {Component} from 'react';
-import {Col, Row, FormGroup, FormControl} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 import MovieList from '../list/movieList';
 
-import {getMoviesByGenre} from './../../attributes/API.js';
+import {getMoviesByGenre} from '../../attributes/API.js';
 
-
+/**
+ * Component: Genre
+ * route("/genre/{genreid}/{Genrename}")
+ * params ( genreid, genrename )
+ */
 export default class Genre extends Component {
 
     constructor() {
@@ -23,7 +27,7 @@ export default class Genre extends Component {
     }
 
     componentDidMount() {
-        this.getPopularMovies()
+        this.getMoviesByGenre()
     }
 
     render() {
@@ -50,7 +54,11 @@ export default class Genre extends Component {
         )
     }
 
-    getPopularMovies = () => {
+    /**
+     * Get all movies by Genre
+     * return movies
+     */
+    getMoviesByGenre = () => {
         Promise.all([
             getMoviesByGenre(this.props.params.genreid).then((movies) => {
                 this.setState({movies: movies})
@@ -63,6 +71,9 @@ export default class Genre extends Component {
         })
     }
 
+    /**
+     * OnClick home button
+     */
     onHomeClick = () => {
         browserHistory.push('/')
     }

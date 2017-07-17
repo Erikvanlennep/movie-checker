@@ -2,10 +2,9 @@
  * Created by erik on 14-7-17.
  */
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
 
-import {Grid, Row, Col, Image, Well, Panel, Button} from 'react-bootstrap';
-import {getPersonDetails} from './../../attributes/API.js';
+import { Row, Col, Image, Panel} from 'react-bootstrap';
+import {getPersonDetails, getPersonMovies} from './../../attributes/API.js';
 import Moment from 'moment';
 import {browserHistory} from 'react-router'
 
@@ -13,6 +12,11 @@ import logo from '../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
 
+/**
+ * Component: Person
+ * route("/person/{personid}/{personname}")
+ * params ( personid, personname )
+ */
 export default class Person extends Component {
     constructor() {
         super();
@@ -36,7 +40,7 @@ export default class Person extends Component {
             <div>
                 {this.createPersonDetailComponent(this.state.person)}
 
-                {/*{this.createCreditsComponent(this.state.credits)}*/}
+                {this.createMoviesComponent(this.state.movies)}
             </div>
         )
     }
@@ -51,6 +55,9 @@ export default class Person extends Component {
             getPersonDetails(personId).then((person) => {
                 this.setState({person: person})
             }),
+            getPersonMovies(personId).then((movies) => {
+                this.setState({movies: movies})
+            }),
 
 
         ]).then((data) => {
@@ -60,7 +67,11 @@ export default class Person extends Component {
         })
     }
 
-
+    /**
+     * Create Person Component
+     * @param person
+     * @returns {XML}
+     */
     createPersonDetailComponent = (person) => {
         console.log(person);
 
@@ -108,6 +119,53 @@ export default class Person extends Component {
         )
     }
 
+    /**
+     * Create Known from component
+     * @param movies
+     * @returns {XML}
+     */
+    createMoviesComponent = (movies) => {
+        let fullCast = [];
+
+        movies.cast.map((movie, index) => {
+            if (index >= 6) {
+                return;
+            }
+
+            const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${movie.poster_path}`
+
+            fullCast.push(
+                <Col xs={4} sm={5} md={3} lg={2} key={index}>
+                    <Panel className="movie-detail-panel">
+                        <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url} onClick={() => this.onMovieClick(movie)}/>
+                        <h5>{movie.title}</h5>
+                        <p><i>{movie.vote_average}</i></p>
+                    </Panel>
+                </Col>
+            )
+        })
+
+        return (
+            <div>
+                <Row>
+                    <h2>Known from</h2>
+                    {fullCast}
+                </Row>
+            </div>
+        )
+    }
+
+    /**OnClick Movie button
+     *
+     * @param movie
+     */
+    onMovieClick = (movie) => {
+        browserHistory.push('/movie/' + movie.id + '/' + movie.title);
+    }
+
+    /**
+     * OnClick home button
+     */
     onHomeClick = () => {
         browserHistory.push('/')
     }

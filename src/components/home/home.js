@@ -3,13 +3,16 @@
  */
 
 import React, {Component} from 'react';
-import {Col, Form, FormGroup, FormControl} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 import MovieList from '../list/movieList';
 
-import {getSearchMovies, getPopularMovies} from './../../attributes/API.js';
+import {getPopularMovies} from './../../attributes/API.js';
 
-
+/**
+ * Component: Home
+ * route("/")
+ */
 export default class Home extends Component {
 
     constructor() {
@@ -38,6 +41,10 @@ export default class Home extends Component {
         )
     }
 
+    /**
+     * Get all popular movies
+     * return movies
+     */
     getMovies = () => {
         this.setState({loading: true});
 

@@ -3,14 +3,18 @@
  */
 
 import React, {Component} from 'react';
-import {Col, Row, FormGroup, FormControl} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import {browserHistory} from 'react-router'
 
 import MovieList from '../list/movieList';
 
 import {getSearchMovies} from './../../attributes/API.js';
 
-
+/**
+ * Component: Search
+ * route("/search/{query}")
+ * params ( query )
+ */
 export default class Home extends Component {
 
     constructor() {
@@ -24,16 +28,12 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-
-        // if(this.state.name !== this.props.params.query){
-        //     this.forceUpdate();
-        // }
-        this.getMovies(this.props.params.query)
+        this.getSearchMovies(this.props.params.query)
     }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.params.query !== undefined){
-            this.getMovies(nextProps.params.query)
+            this.getSearchMovies(nextProps.params.query)
         }
     }
 
@@ -60,7 +60,12 @@ export default class Home extends Component {
         )
     }
 
-    getMovies = (query) => {
+    /**
+     * get Movies by Query
+     * @param query
+     * return movies
+     */
+    getSearchMovies = (query) => {
         // let query = this.props.params.query;
         this.setState({loading: true});
 
@@ -78,6 +83,9 @@ export default class Home extends Component {
         })
     }
 
+    /**
+     * OnClick home button
+     */
     onHomeClick = () => {
         browserHistory.push('/')
     }

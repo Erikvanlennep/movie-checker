@@ -59,41 +59,6 @@ class App extends Component {
         }
     }
 
-    /*
-    onSearchBoxChange = (event) => {
-        let value = event.target.value;
-
-        clearTimeout(this.state.timeout);
-
-        this.setState({loading: true});
-
-        this.state.timeout = setTimeout(() => {
-            this.setState({
-                name: value
-            })
-
-            if (this.state.name === '') {
-                this.setState({loading: false})
-                this.getPopularMovies();
-                return;
-            }
-
-
-
-            Promise.all([
-                getSearchMovies(this.state.name, 'en-US', 1).then((movies) => {
-                    this.setState({movies: movies})
-                }),
-
-            ]).then((data) => {
-                this.setState({loading: false})
-            }).catch((err) => {
-                this.handleFetchError(err)
-            })
-        }, 1000)
-    }
-    */
-
     onHomeClick = () => {
         browserHistory.push('/')
     }

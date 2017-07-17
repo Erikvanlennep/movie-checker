@@ -2,8 +2,7 @@
  * Created by erik on 13-7-17.
  */
 import React, {Component} from 'react'
-import PropTypes from 'prop-types';
-import {Grid, Row, Col, Image, Well, Panel, Button} from 'react-bootstrap';
+import {Row, Col, Image, Panel, Button} from 'react-bootstrap';
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
 import Moment from 'moment';
 import {browserHistory} from 'react-router'
@@ -14,6 +13,11 @@ import logo from '../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
 
+/**
+ * Component: MovieDetail
+ * route("/movie/{movieid}/{moviename}")
+ * params ( movieid, moviename )
+ */
 export default class MovieDetial extends Component {
 
     constructor() {
@@ -123,6 +127,10 @@ export default class MovieDetial extends Component {
         )
     }
 
+    /**
+     * Render genres for a specific movie
+     * @param genres
+     */
     renderGenres = (genres) => {
 
         return genres.map((genre, index) => {
@@ -133,13 +141,17 @@ export default class MovieDetial extends Component {
         })
     }
 
+    /**
+     * On click genre button
+     * @param genre
+     */
     onGenreClick = (genre) => {
         browserHistory.push('/genre/' + genre.id + '/' + genre.name)
     }
 
 
     /**
-     *
+     *Create credit component
      * @param credits
      */
     createCreditsComponent = (credits) => {
@@ -155,7 +167,7 @@ export default class MovieDetial extends Component {
             fullCast.push(
                 <Col xs={4} sm={5} md={3} lg={2} key={index}>
                     <Panel className="movie-detail-panel">
-                        <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url} onClick={() => this.onCastPersonClick(cast)}/>
+                        <Image className="image-center cursor-pointer no-image-holder w138_and_h175" rounded src={url} onClick={() => this.onPersonClick(cast)}/>
                         <h5>{cast.character}</h5>
                         <p><i>{cast.name}</i></p>
                     </Panel>
@@ -173,11 +185,18 @@ export default class MovieDetial extends Component {
         )
     }
 
+    /**
+     * OnClick home button
+     */
     onHomeClick = () => {
         browserHistory.push('/')
     }
 
-    onCastPersonClick = (person) => {
+    /**
+     * OnClick Person button
+     * @param person
+     */
+    onPersonClick = (person) => {
         browserHistory.push('/person/' + person.id + '/' + person.name);
     }
 

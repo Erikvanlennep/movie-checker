@@ -3,16 +3,20 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import {Col, Row, Button, Well, Image} from 'react-bootstrap';
+import {Col, Button, Well, Image} from 'react-bootstrap';
 import {browserHistory} from 'react-router'
 
 
 import {BASE_IMG_URL} from '../../attributes/constants'
 import thumbnail from '../../images/thumbnails/no-image-available.png'
 
-import '../home/movieList.css'
+import './movieList.css'
 import logo from '../../images/logo/logo.svg';
 
+/**
+ * Component: MovieList
+ * return a component of movies
+ */
 export default class MovieList extends Component {
 
     constructor() {
@@ -34,6 +38,11 @@ export default class MovieList extends Component {
         )
     }
 
+    /**
+     *  render the movies in a list
+     * @param movies
+     * @returns {XML}
+     */
     renderMovies = (movies) => {
         let allMovies = [];
 
@@ -58,12 +67,12 @@ export default class MovieList extends Component {
         return ( <div>{allMovies} </div> )
     }
 
+    /**
+     * OnClick for details about a movie
+     * @param movie
+     */
     onMovieDetailButtonClick = (movie) => {
         browserHistory.push('/movie/' + movie.id + '/' + movie.title);
-    }
-
-    onHomeClick = () => {
-        browserHistory.push('/')
     }
 }
 

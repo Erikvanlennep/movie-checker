@@ -6,8 +6,8 @@ import { Router, Route, browserHistory } from 'react-router';
 //components
 import App from './components/app/App';
 import Home from './components/home/home'
-import movieDetail from './components/movieDetail/movieDetail'
-import genre from './components/movies/genre'
+import movieDetail from './components/movie/movieDetail'
+import genre from './components/movie/genre'
 import search from './components/search/search'
 import person from './components/person/person'
 
