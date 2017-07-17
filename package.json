@@ -1,10 +1,18 @@
 {
   "name": "movie-checker",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "bootstrap": "3.3.7",
+    "bootstrap-material-design": "0.5.10",
+    "moment": "2.18.1",
+    "prop-types": "15.5.10",
+    "react": "15.6.1",
+    "react-bootstrap": "0.31.0",
+    "react-dom": "15.6.1",
+    "react-dropdown-input": "0.1.11",
+    "react-router": "3.0.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.10"

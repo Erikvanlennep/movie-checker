@@ -1,0 +1,44 @@
+
+/*image options*/
+.image-center {
+    display: block;
+    margin: 0 auto;
+}
+
+/*No image holder*/
+.no-image-holder.w138_and_h175 {
+    width: 138px;
+    height: 175px;
+}
+
+.no-image-holder.w300_and_h450 {
+    width: 300px;
+    height: 450px;
+}
+
+/*Loader*/
+.loader {
+    animation: App-logo-spin infinite 20s linear;
+    height: 60px;
+    text-align: center;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*cursor options*/
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.cursor-normal {
+    cursor: default !important;
+}
+
+
