@@ -2,6 +2,11 @@
  * Created by erik on 17-7-17.
  */
 
+/**
+ * Movie model
+ * @param movie
+ * @returns {{id: *, title: *, vote_average: *, poster_path, overview, release_date, genre_ids}}
+ */
 export function movie (movie)  {
     let id = movie.id;
     let title = movie.title;

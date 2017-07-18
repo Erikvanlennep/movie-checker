@@ -3,13 +3,7 @@ This app is an assignment from the Hogeschool Rotterdam.
 
 ## What it does
 
-The movie checker shows you a list of popular movies. You can search through specific movies by typing in the name.
-
-When clicked on a movie a description follows with the genres and the cast and crew. You can click on a genre or a person
-
-When clicked on a genre it leads to a list of movies found by the genre you clicked
-
-When clicked on a person a biography follows with a list of movies the person is known from. 
+The movie checker shows you a list of popular movies. You can search through specific movies by typing in the name. When clicked on a movie a description follows with the genres and the cast and crew. You can click on a genre or a person. When clicked on a genre it leads to a list of movies found by the genre you clicked. When clicked on a person a biography follows with a list of movies the person is known from. 
 
 # Setup
 
@@ -38,7 +32,7 @@ Clone the repo:
 
     $ npm start
     
-4) the application should start automatically in the browser
+4) the application should start automatically in the browser at:
 
     http://localhost:3000/
 
@@ -87,6 +81,10 @@ Clone the repo:
 # App
 
 You can find the app live here [Movie checker](http://eriklennep.nl/movie-checker/#/)
+
+The app is tested at 3 platforms. 
+
+![browser-test](/docs/browsertest.png "Browser-test in table")
 
 # credentials
 

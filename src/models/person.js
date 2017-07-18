@@ -2,6 +2,11 @@
  * Created by erik on 17-7-17.
  */
 
+/**
+ * Person model
+ * @param person
+ * @returns {{id: *, name: *, vote_average: *, profile_image: *, biography, birthday, gender}}
+ */
 export function person (person)  {
     let id = person.id;
     let name = person.name;
