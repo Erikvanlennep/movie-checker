@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import {Col, Row} from 'react-bootstrap';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 import MovieList from '../list/movieList';
 
@@ -75,7 +75,7 @@ export default class Genre extends Component {
      * OnClick home button
      */
     onHomeClick = () => {
-        browserHistory.push('/')
+        hashHistory.push('/')
     }
 
     /**
