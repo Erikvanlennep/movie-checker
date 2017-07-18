@@ -1,13 +1,23 @@
 # movie-checker
-This app is an assignment from the Hogeschool Rotterdam. This app shows you all the movies with additional information
+This app is an assignment from the Hogeschool Rotterdam. 
 
-# Prerequisites #
+## What it does
+
+The movie checker shows you a list of popular movies. You can search through specific movies by typing in the name.
+
+When clicked on a movie a description follows with the genres and the cast and crew. You can click on a genre or a person
+
+When clicked on a genre it leads to a list of movies found by the genre you clicked
+
+When clicked on a person a biography follows with a list of movies the person is known from. 
+
+# Setup
+
+## Prerequisites
 
 * [Phpstorm](https://www.jetbrains.com/phpstorm/download/)
 
 * [Node JS](https://nodejs.org/en/download/)
-
-# Setup
 
 Clone the repo:
     
@@ -74,8 +84,10 @@ Clone the repo:
         ├── index.js
         └── registerServiceWorker.js
         
+# App
 
+You can find the app live here [Movie checker](http://eriklennep.nl/movie-checker/#/)
 
-## credentials
+# credentials
 
 © 2017 Erik van Lennep
