@@ -73,11 +73,8 @@ export default class Person extends Component {
      * @returns {XML}
      */
     createPersonDetailComponent = (person) => {
-        console.log(person);
-
+        
         const url = !person.profile_path ? thumbnail : `${BASE_IMG_URL}/w300_and_h450_bestv2${person.profile_path}`
-
-        // let gender = person.gender = 1 ? "female" : "male";
 
         return (
             <div>
