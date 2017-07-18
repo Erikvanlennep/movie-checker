@@ -5,14 +5,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Col, Button, Well, Image} from 'react-bootstrap';
-import {browserHistory} from 'react-router'
+import {hashHistory} from 'react-router'
 
 
 import {BASE_IMG_URL} from '../../attributes/constants'
 import thumbnail from '../../images/thumbnails/no-image-available.png'
 
 import './movieList.css'
-import logo from '../../images/logo/logo.svg';
+import logo from './../../images/logo/logo.svg';
 
 /**
  * Component: MovieList
@@ -68,7 +68,7 @@ export default class MovieList extends Component {
      * @param movie
      */
     onMovieDetailButtonClick = (movie) => {
-        browserHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
+        hashHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
     }
 }
 

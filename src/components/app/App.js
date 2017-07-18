@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import {Grid, Col, Form, FormGroup, FormControl} from 'react-bootstrap';
 
 import './App.css';
@@ -58,9 +58,9 @@ class App extends Component {
             event.preventDefault();
 
             if(event.target.value === ''){
-                browserHistory.push('/')
+                hashHistory.push('/')
             }else{
-                browserHistory.push('/search/' + event.target.value)
+                hashHistory.push('/search/' + event.target.value)
             }
 
 
@@ -68,7 +68,7 @@ class App extends Component {
     }
 
     onHomeClick = () => {
-        browserHistory.push('/')
+        hashHistory.push('/')
     }
 }
 

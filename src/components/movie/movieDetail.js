@@ -4,13 +4,13 @@
 
 import React, {Component} from 'react'
 import {Row, Col, Image, Panel, Button} from 'react-bootstrap';
-import {browserHistory} from 'react-router'
+import {hashHistory} from 'react-router'
 import {getMovieDetails, getMovieCredits} from './../../attributes/API.js';
 import Moment from 'moment';
 
 import './movieDetail.css'
 
-import logo from '../../images/logo/logo.svg';
+import logo from './../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
 
@@ -146,7 +146,7 @@ export default class MovieDetial extends Component {
      * @param genre
      */
     onGenreClick = (genre) => {
-        browserHistory.push('/genre/' + genre.id + '/' + genre.name.replace(/ /g, "_"))
+        hashHistory.push('/genre/' + genre.id + '/' + genre.name.replace(/ /g, "_"))
     }
 
 
@@ -189,7 +189,7 @@ export default class MovieDetial extends Component {
      * OnClick home button
      */
     onHomeClick = () => {
-        browserHistory.push('/')
+        hashHistory.push('/')
     }
 
     /**
@@ -197,7 +197,7 @@ export default class MovieDetial extends Component {
      * @param person
      */
     onPersonClick = (person) => {
-        browserHistory.push('/person/' + person.id + '/' + person.name.replace(/ /g, "_"));
+        hashHistory.push('/person/' + person.id + '/' + person.name.replace(/ /g, "_"));
     }
 
     /**

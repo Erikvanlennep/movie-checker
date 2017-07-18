@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 
 //components
 import App from './components/app/App';
@@ -20,7 +19,7 @@ import 'bootstrap-material-design/dist/css/ripples.min.css'
 
 
 ReactDOM.render(
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
         <Route component={App}>
             <Route path="/" component={Home}/>
             <Route path="/search/:query" component={search}/>
@@ -32,5 +31,3 @@ ReactDOM.render(
     </Router>,
     document.getElementById('root')
 );
-
-registerServiceWorker();

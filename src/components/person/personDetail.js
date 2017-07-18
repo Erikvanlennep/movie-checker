@@ -4,11 +4,11 @@
 
 import React, {Component} from 'react'
 import { Row, Col, Image, Panel} from 'react-bootstrap';
-import {browserHistory} from 'react-router'
+import {hashHistory} from 'react-router'
 import {getPersonDetails, getPersonMovies} from './../../attributes/API.js';
 import Moment from 'moment';
 
-import logo from '../../images/logo/logo.svg';
+import logo from './../../images/logo/logo.svg';
 import {BASE_IMG_URL} from './../../attributes/constants'
 import thumbnail from './../../images/thumbnails/no-image-available.png'
 
@@ -154,13 +154,13 @@ export default class Person extends Component {
      * @param movie
      */
     onMovieClick = (movie) => {
-        browserHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
+        hashHistory.push('/movie/' + movie.id + '/' + movie.title.replace(/ /g, "_"));
     }
 
     /**
      * OnClick home button
      */
     onHomeClick = () => {
-        browserHistory.push('/')
+        hashHistory.push('/')
     }
 }
