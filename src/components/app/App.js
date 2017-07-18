@@ -67,6 +67,9 @@ class App extends Component {
         }
     }
 
+    /**
+     * OnClick home button
+     */
     onHomeClick = () => {
         hashHistory.push('/')
     }

@@ -6,7 +6,6 @@ This app is an assignment from the Hogeschool Rotterdam.
 The movie checker shows you a list of popular movies. You can search through specific movies by typing in the name. When clicked on a movie a description follows with the genres and the cast and crew. You can click on a genre or a person. When clicked on a genre it leads to a list of movies found by the genre you clicked. When clicked on a person a biography follows with a list of movies the person is known from. 
 try it yourself at [Movie-checker](http://eriklennep.nl/movie-checker/#/)
 
-
 # Setup
 
 ## Prerequisites
@@ -79,10 +78,6 @@ Clone the repo:
         ├── index.css
         ├── index.js
         └── registerServiceWorker.js
-
-## API
-
-In this app we use [themoviedatabase.org](https://developers.themoviedb.org/)
         
 # App
 
@@ -91,6 +86,10 @@ You can find the app live here [Movie-checker](http://eriklennep.nl/movie-checke
 The app is tested at 3 platforms. 
 
 ![browser-test](/docs/browsertest.png "Browser-test in table")
+
+## API
+
+In this app we use [themoviedatabase.org](https://developers.themoviedb.org/)
 
 # credentials
 
