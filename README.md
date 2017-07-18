@@ -78,4 +78,4 @@ Clone the repo:
 
 ## credentials
 
-Erik van Lennep
+© 2017 Erik van Lennep
