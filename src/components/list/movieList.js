@@ -43,7 +43,7 @@ export default class MovieList extends Component {
         let allMovies = [];
 
         movies.map((movie, index) => {
-
+            
             const url = !movie.poster_path ? thumbnail : `${BASE_IMG_URL}/w138_and_h175_bestv2${movie.poster_path}`
 
             allMovies.push(
