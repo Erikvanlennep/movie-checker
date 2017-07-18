@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
+// import registerServiceWorker from './registerServiceWorker';
+
 
 //components
 import App from './components/app/App';
@@ -31,3 +33,5 @@ ReactDOM.render(
     </Router>,
     document.getElementById('root')
 );
+
+// registerServiceWorker();
